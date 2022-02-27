@@ -6,8 +6,8 @@ subscribers: dict[str, Callbacks] = dict()
 
 
 def subscribe(event_type: str, fn: Callable[..., None]):
-    if event_type in subscribers:
-        return
+    if event_type not in subscribers:
+        subscribers[event_type] = []
     subscribers[event_type].append(fn)
 
 
