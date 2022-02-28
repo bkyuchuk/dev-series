@@ -20,3 +20,11 @@ def password_forgotten(email: str):
     user.reset_code = get_random_string(5)
 
     post_event("user_password_forgotten", user)
+
+
+def reset_password(code: str, email: str, password: str):
+    # retrieve the user
+    user = find_user(email)
+
+    # reset the password
+    user.reset_password(code, password)
