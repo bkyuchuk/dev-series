@@ -11,5 +11,10 @@ def handle_user_registered_event(user: User):
     )
 
 
+def handle_user_plan_upgrade_event(user: User):
+    post_slack_msg("sales", f"{user.name} has upgraded their plan.")
+
+
 def setup_slack_event_handlers():
     subscribe("user_registered", handle_user_registered_event)
+    subscribe("user_plan_upgrade", handle_user_plan_upgrade_event)

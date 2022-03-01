@@ -1,7 +1,7 @@
 from lib.db import create_user, find_user
 from lib.stringutils import get_random_string
 
-from api_v2.event import post_event
+from .event import post_event
 
 
 def register_user(name: str, passwd: str, email: str):
@@ -19,6 +19,7 @@ def password_forgotten(email: str):
     # generate a password reset code
     user.reset_code = get_random_string(5)
 
+    # fire a password forgotten event
     post_event("user_password_forgotten", user)
 
 
